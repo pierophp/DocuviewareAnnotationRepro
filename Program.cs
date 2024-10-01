@@ -1,5 +1,6 @@
 using DocuviewareAnnotationRepro.Business;
 using GdPicture14.WEB;
+using DotNetEnv;
 
 namespace DocuviewareAnnotationRepro;
 
@@ -7,6 +8,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        Env.Load();
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
@@ -51,11 +53,11 @@ public class Program
     {
         var appUri = "http://localhost:1824";
 
-        DocuViewareLicensing.RegisterKEY("");
+        DocuViewareLicensing.RegisterKEY(Environment.GetEnvironmentVariable("DocuviewareLicenseKey"));
         var cacheFolder = GetCacheDirectory();            
         var stickSession = true;
         var stateMode = DocuViewareSessionStateMode.InProc;
-        DocuViewareManager.SetupConfiguration(stickSession, stateMode, cacheFolder, appUri, "api/DocuVieware");
+        DocuViewareManager.SetupConfiguration(stickSession, stateMode, cacheFolder, appUri, "DocuVieware");
         DocuViewareEventsHandler.CustomAction += CustomActionDispatcher;
     }
 

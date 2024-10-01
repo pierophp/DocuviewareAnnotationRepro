@@ -187,4 +187,10 @@ public class DocuviewareController : Controller
             return output;
         }
     }
+
+    [HttpPost("baserequest")]
+    public string baserequest([FromBody] object jsonString)
+    {
+        return DocuViewareControllerActionsHandler.baserequest(jsonString);
+    }
 }
