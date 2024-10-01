@@ -51,13 +51,13 @@ public class Program
     }
     public static void SetDocuvieware()
     {
-        var appUri = "http://localhost:1824";
+        var appUri = "https://localhost:7196";
 
         DocuViewareLicensing.RegisterKEY(Environment.GetEnvironmentVariable("DocuviewareLicenseKey"));
         var cacheFolder = GetCacheDirectory();            
         var stickSession = true;
         var stateMode = DocuViewareSessionStateMode.InProc;
-        DocuViewareManager.SetupConfiguration(stickSession, stateMode, cacheFolder, appUri, "DocuVieware");
+        DocuViewareManager.SetupConfiguration(stickSession, stateMode, cacheFolder, appUri, "Docuvieware");
         DocuViewareEventsHandler.CustomAction += CustomActionDispatcher;
     }
 
