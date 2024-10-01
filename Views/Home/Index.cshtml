@@ -1,8 +1,36 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="docuvieware-container">
+    <div id="dvContainer" style="height: calc(100vh - 118px)">
+    </div>
 </div>
+
+<script>
+    async function load() {
+        const docuViewareConfigForFile = {
+            SessionId: '1234',
+            ControlId: '4567',
+            FileId: '98d8b543-5ab8-43ee-a59f-4acf8e846351',
+            ShowAnnotationsSnapIn: false,
+            AnnotationsFileId: '184bec31-6390-47e4-ad7d-3ea130219040',
+        };
+
+        const response = await fetch('/Docuvieware/GetDocuViewareControlForFile',
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+                body: JSON.stringify(docuViewareConfigForFile)
+        });
+
+        const data = await response.json();
+        const fragment = document.createRange().createContextualFragment(data.htmlContent);
+
+        document.getElementById('dvContainer')?.appendChild(fragment);
+    }
+
+    load();
+    
+</script>
