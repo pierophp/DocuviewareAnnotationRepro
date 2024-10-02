@@ -21,6 +21,19 @@ public class FileManager
         return file;
 
     }
+
+    public FileDataAndInfo GetFileGivenGuid2(Guid fileId)
+    {   
+        string filePath = $@"wwwroot\documents\{fileId}.xml";
+
+        FileDataAndInfo file = new FileDataAndInfo();
+        file.FileName = fileId.ToString() + ".xml";
+        file.FileType = "text/xml";
+        file.FileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);;
+
+        return file;
+
+    }
    
     public static async Task InsertOrUpdateXMPAnnotationsForFile(Guid assetFileId, Guid workspaceId, byte[] xmpFile, string bearerToken, CustomActionEventArgs e)
     {

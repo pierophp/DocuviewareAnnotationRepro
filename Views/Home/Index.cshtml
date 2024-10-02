@@ -1,6 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    .docuvieware-container {
+        width: 100%;
+    }
+</style>
 <div class="docuvieware-container">
     <div id="dvContainer" style="height: calc(100vh - 118px)">
     </div>
@@ -12,25 +17,30 @@
             SessionId: '1234',
             ControlId: '4567',
             FileId: '98d8b543-5ab8-43ee-a59f-4acf8e846351',
-            ShowAnnotationsSnapIn: false,
+            ShowAnnotationsSnapIn: true,
             AnnotationsFileId: '184bec31-6390-47e4-ad7d-3ea130219040',
         };
 
         const response = await fetch('/Docuvieware/GetDocuViewareControlForFile',
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify(docuViewareConfigForFile)
-        });
+            });
 
         const data = await response.json();
         const fragment = document.createRange().createContextualFragment(data.htmlContent);
 
         document.getElementById('dvContainer')?.appendChild(fragment);
+
+        // hack
+        setTimeout(() => {
+            $('#control4567').css('height', '1029px');
+        }, 10)
     }
 
     load();
-    
+
 </script>

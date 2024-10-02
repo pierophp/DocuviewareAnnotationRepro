@@ -83,8 +83,8 @@ public class DocuviewareController : Controller
                 docuVieware.ShowBookmarksSnapIn = enableAnnotations;
                 docuVieware.ShowSnapInButtonStrip = enableAnnotations;
                 docuVieware.ShowSnapInCollapseButton = enableAnnotations;
-                docuVieware.ShowTextSearchSnapIn = enableAnnotations;
-                docuVieware.ShowThumbnailsSnapIn = enableAnnotations;
+                docuVieware.ShowTextSearchSnapIn = false; // Problem enableAnnotations
+                docuVieware.ShowThumbnailsSnapIn = false; // Problem enableAnnotations
                 docuVieware.EnableMultipleThumbnailSelection = enableAnnotations;
                 docuVieware.ShowAnnotationsCommentsSnapIn = enableAnnotations;
                 docuVieware.ShowAnnotationsSnapIn = enableAnnotations;
@@ -113,7 +113,7 @@ public class DocuviewareController : Controller
                     if (!controlConfigurationForFile.AnnotationsFileId.Equals(Guid.Empty))
                     {
                        
-                        FileDataAndInfo annotationsFileDataAndInfo = fileManager.GetFileGivenGuid(controlConfigurationForFile.AnnotationsFileId);
+                        FileDataAndInfo annotationsFileDataAndInfo = fileManager.GetFileGivenGuid2(controlConfigurationForFile.AnnotationsFileId);
                         if (annotationsFileDataAndInfo.FileStream != null)
                         {
                             var statusLoad = docuVieware.LoadAnnotations(annotationsFileDataAndInfo.FileStream);
