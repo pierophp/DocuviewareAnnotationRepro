@@ -1,5 +1,4 @@
 ﻿using GdPicture14;
-using System.Drawing;
 
 namespace DocuviewareAnnotationRepro.Business;
 
@@ -8,8 +7,7 @@ public class ImageProcessingManager
     public static GdPictureStatus ManageImageOrientationWithGDPicture(int imageId, GdPictureImaging oGdPictureImaging)
     {
         GdPictureRotateFlipType orientation = oGdPictureImaging.TagGetExifRotation(imageId);
-        RotateFlipType transformType = (RotateFlipType)orientation;
-        var status = oGdPictureImaging.Rotate(imageId, transformType);
+        var status = oGdPictureImaging.Rotate(imageId, orientation);
         var tagId = GetExifOrientationTagId(imageId, oGdPictureImaging);
         if (tagId > 0)
         {
